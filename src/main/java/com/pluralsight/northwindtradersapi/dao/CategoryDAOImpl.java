@@ -1,8 +1,7 @@
 package com.pluralsight.northwindtradersapi.dao;
 
 import com.pluralsight.northwindtradersapi.models.Category;
-import com.pluralsight.northwindtradersapi.models.Product;
-import com.pluralsight.northwindtradersapi.utils.DatabaseConnection;
+import com.pluralsight.northwindtradersapi.config.DbConfiguration;
 import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
@@ -21,7 +20,7 @@ public class CategoryDAOImpl implements CategoryDAO {
     public Category getCategoryById(int id) {
         Category categories = null;
         String query = "SELECT * FROM Categories WHERE CategoryID = ?";
-        try (Connection connection = DatabaseConnection.getConnection();
+        try (Connection connection = DbConfiguration.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -42,7 +41,7 @@ public class CategoryDAOImpl implements CategoryDAO {
         List<Category> categories = new ArrayList<>();
         String query = "SELECT * FROM Categories";
 
-        try (Connection connection = DatabaseConnection.getConnection();
+        try (Connection connection = DbConfiguration.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query);
              ResultSet resultSet = preparedStatement.executeQuery()) {
 
