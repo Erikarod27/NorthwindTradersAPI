@@ -3,6 +3,7 @@ package com.pluralsight.northwindtradersapi.dao;
 import com.pluralsight.northwindtradersapi.models.Category;
 import com.pluralsight.northwindtradersapi.models.Product;
 import com.pluralsight.northwindtradersapi.utils.DatabaseConnection;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class CategoryDAOImpl implements CategoryDAO {
 
     public CategoryDAOImpl(){}
@@ -26,8 +28,8 @@ public class CategoryDAOImpl implements CategoryDAO {
 
             if (resultSet.next()) {
                 categories = new Category();
-                categories.setCategoryId(resultSet.getInt("id"));
-                categories.setCategoryName(resultSet.getString("name"));
+                categories.setCategoryId(resultSet.getInt("CategoryID"));
+                categories.setCategoryName(resultSet.getString("CategoryName"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -46,8 +48,8 @@ public class CategoryDAOImpl implements CategoryDAO {
 
             while (resultSet.next()) {
                 Category category = new Category();
-                category.setCategoryId(resultSet.getInt("id"));
-                category.setCategoryName(resultSet.getString("name"));
+                category.setCategoryId(resultSet.getInt("CategoryID"));
+                category.setCategoryName(resultSet.getString("CategoryName"));
                 categories.add(category);
             }
         } catch (SQLException e) {
